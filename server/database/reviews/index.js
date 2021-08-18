@@ -15,6 +15,8 @@ const reviewSchema = new mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: "Users"
         },
+        isRestaurantReview : Boolean,
+        isFoodReview : Boolean,
         rating: { type: Number, required: true },
         reviewText: { type: String, required: true },
         photos: [
@@ -22,7 +24,8 @@ const reviewSchema = new mongoose.Schema(
                 type: mongoose.Types.ObjectId,
                 ref: "Images"
             }
-        ]
+        ],
+        
 
     },
     {

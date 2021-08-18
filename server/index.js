@@ -33,6 +33,7 @@ import Auth from "./API/Auth";
 import Restaurants from "./API/Restaurants"
 import Food from "./API/Food";
 import Image from "./API/Image";
+import Order from "./API/Orders";
 
 
 // applicational routes 
@@ -40,6 +41,7 @@ zomato.use("/auth", Auth);
 zomato.use("/restaurants",Restaurants);
 zomato.use("/food" , Food);
 zomato.use("/image" , Image);
+zomato.use("/orders",Order);
 
 zomato.get("/", (req, res) => res.json({ message: "set up success" }));
 
