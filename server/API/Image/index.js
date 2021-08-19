@@ -6,6 +6,8 @@ require("dotenv").config();
 // models
 import { ImageModel } from "../../database/Allmodels";
 
+// AWS
+import { s3Upload } from "../../Utils/AWS";
 
 const Router = express.Router();
 
@@ -13,13 +15,6 @@ const Router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-
-//  AWS S3 bucket config 
-const s3Bucket = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECREAT_KEY,
-    region: "ap-south-1",
-})
 /* 
  route   /
  desc    uploads given images to S3 bucket and save the image links to Mongodb
@@ -40,17 +35,6 @@ Router.post("/", upload.single("file"), async (req, res) => {
             ContentType: file.mimetype,
             ACL: "public-read", // Access control list
         };
-
-        const s3Upload = (options) => {
-            return new Promise((resolve, reject) =>
-                s3Bucket.upload(options, (error, data) => {
-                    if (error) {
-                        return reject(error);
-                    }
-                    return resolve(data);
-                })
-            )
-        }
 
         const uploadImage = await s3Upload(bucketOptions);
 

@@ -12,7 +12,7 @@ const restaurantSchema = new mongoose.Schema(
         website: String,
         popularDishes: [String],
         averageCost: Number,
-        amenties: String,
+        amenties: [String],
         menuImages: {
             type: mongoose.Types.ObjectId,
             ref: "Images"
