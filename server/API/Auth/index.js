@@ -6,6 +6,10 @@ import passport from "passport";
 // Models
 import { UserModel } from "../../database/user"
 
+// validations 
+import { validateSignup ,validateSignin  } from "../../validation/auth";
+
+
 const Router = express.Router();
 
 
@@ -18,6 +22,9 @@ const Router = express.Router();
 */
 Router.post("/signup", async (req, res) => {
     try {
+
+        // validating user details
+        await validateSignup(req.body.credentials);
         // check  whether email exist or not
         await UserModel.findByEmailAndPhoneNumber(req.body.credentials);
 
@@ -44,7 +51,8 @@ Router.post("/signup", async (req, res) => {
 
 Router.post("/signin", async (req, res) => {
     try {
-
+        // validating user details
+        await validateSignin(req.body.credentials);
         // checking wheather user exists or not
         const user = await UserModel.findUserByEmailAndPassword(req.body.credentials);
 
@@ -84,7 +92,7 @@ Router.get("/google", passport.authenticate("google", {
 
 Router.get("/google/callback", passport.authenticate("google", { failureRedirect: "/" }),
     (req, res) => {
-        return res.json({token :req.session.passport.user.token});
+        return res.json({ token: req.session.passport.user.token });
 
     }
 );

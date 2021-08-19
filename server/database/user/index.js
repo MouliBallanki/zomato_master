@@ -19,11 +19,12 @@ const UserSchema = new mongoose.Schema(
 )
 
 UserSchema.statics.findByEmailAndPhoneNumber = async ({ email, phoneNumber }) => {
-    const checkUserByEmail = await UserModel.findOne({ email });
-    const checkUserByPhoneNumber = await UserModel.findOne({ phoneNumber });
+    const checkUserByEmail = await UserModel.findOne( {email} );
+    const checkUserByPhoneNumber = await UserModel.findOne( {phoneNumber} );
+
 
     if (checkUserByEmail || checkUserByPhoneNumber) {
-        throw new Error("User Already exists...");
+        throw new Error("User Already exist...😉");
     }
     return false;
 }
@@ -55,7 +56,7 @@ UserSchema.methods.GenerateJwtToken = function (){
 
 UserSchema.statics.findUserByEmailAndPassword = async({email , password}) => {
     // checking whether user exist or not
-    const user = await UserModel.findOne({ email });
+    const user = await UserModel.findOne( {email} );
     if(!user){
         throw new Error ("User does not exists....😪");
     }
