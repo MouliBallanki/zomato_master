@@ -4,9 +4,11 @@ import passport from "passport";
 // models
 import { UserModel } from "../../database/Allmodels";
 
+// validation 
+import { validateRestaurantById } from "../../validation/food";
+
+
 const Router = express.Router();
-
-
 /* 
  route   /
  desc    get specific user details
@@ -18,6 +20,7 @@ const Router = express.Router();
 
 Router.get("/:_id", async (req, res) => {
     try {
+        await validateRestaurantById(req.params);
         const { _id } = req.params;
         const userData = await UserModel.findById(_id);
 
@@ -40,6 +43,7 @@ Router.get("/:_id", async (req, res) => {
 */
 Router.put("/update/:_id", async (req, res) => {
     try {
+        await validateRestaurantById(req.params);
         const { _id } = req.params;
         const { userData } = req.body;
 

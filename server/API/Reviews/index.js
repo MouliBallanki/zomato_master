@@ -4,6 +4,12 @@ import passport from "passport";
 // models
 import { ReviewModel, FoodModel } from "../../database/Allmodels";
 
+
+// validatoin models
+import { validateReviewData } from "../../validation/review";
+import { validateRestaurantById } from "../../validation/food";
+
+
 const Router = express.Router();
 
 
@@ -17,6 +23,7 @@ const Router = express.Router();
 */
 Router.post("/new", async (req, res) => {
     try {
+        await validateReviewData(req.body.reviewData);
         const { reviewData } = req.body;
         await ReviewModel.create(reviewData);
 
@@ -38,6 +45,7 @@ Router.post("/new", async (req, res) => {
 */
 Router.delete("/delete/:_id", async (req, res) => {
     try {
+        await validateRestaurantById(req.params);
         const { _id } = req.params;
         await ReviewModel.findByIdAndDelete(_id);
 

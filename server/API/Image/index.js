@@ -2,13 +2,15 @@ import passport from "passport";
 import express from "express";
 import AWS from "aws-sdk";
 import multer from "multer";
-require("dotenv").config();
 // models
 import { ImageModel } from "../../database/Allmodels";
 
 // AWS
 import { s3Upload } from "../../Utils/AWS";
 
+
+// import validation
+import { validateFileData } from "../../validation/image";
 const Router = express.Router();
 
 // config multer
@@ -25,6 +27,7 @@ const upload = multer({ storage });
 
 Router.post("/", upload.single("file"), async (req, res) => {
     try {
+        await validateFileData(req.file);
         const file = req.file;
 
         // aws s3 bucket options
