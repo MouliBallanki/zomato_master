@@ -1,5 +1,5 @@
 import express from "express";
-import passport from "passport";
+import passport, { session } from "passport";
 
 // models
 import { UserModel } from "../../database/Allmodels";
@@ -18,7 +18,7 @@ const Router = express.Router();
  Access  public
 */
 
-Router.get("/:_id", async (req, res) => {
+Router.get("/:_id" ,async (req, res) => {
     try {
         await validateRestaurantById(req.params);
         const { _id } = req.params;

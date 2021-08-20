@@ -25,8 +25,11 @@ zomato.use(passport.session());
 
 // importing googleOAuth
 import googleAuthConfig from"./config/google.config"
+import routeConfig from "./config/route.config";
+
 // passport configurations
 googleAuthConfig(passport);
+routeConfig(passport);
 
 // importing Microservices route
 import Auth from "./API/Auth";

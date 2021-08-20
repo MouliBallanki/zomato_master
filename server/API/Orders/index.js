@@ -19,7 +19,9 @@ const Router = express.Router();
  method  GET
  Access  public
 */
-Router.get("/:_id", async (req, res) => {
+Router.get("/:_id",
+passport.authenticate("jwt" , {session:false}) ,
+ async (req, res) => {
 
     try {
         await validateRestaurantById(req.params);
@@ -58,6 +60,7 @@ Router.post("/new/:_id", async (req, res) => {
             },
             {new:true}
         )
+        return res.status(200).json({addNewOrder});
     } catch (error) {
         return res.status(500).json({error:error.message});
     }
