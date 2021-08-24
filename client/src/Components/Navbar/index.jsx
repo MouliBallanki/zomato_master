@@ -53,8 +53,8 @@ const PcNavbar = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-4 ml-16">
-                        <button className="text-gray-500 hover:text-gray-800 text-xl">Login</button>
-                        <button className="text-gray-500 hover:text-gray-800 text-xl">SignUp</button>
+                        <button className="text-gray-500 hover:text-gray-800 text-lg">Login</button>
+                        <button className="text-gray-500 hover:text-gray-800 text-lg">SignUp</button>
 
                     </div>
                 </div>
