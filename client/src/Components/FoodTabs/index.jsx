@@ -39,7 +39,7 @@ const MobFoodTabs = () => {
 
     return (
         <>
-            <div className=" w-full bg-white z-10 border-t-2 p-3 fixed bottom-0 lg:hidden flex gap-4 items-center justify-between md:justify-evenly text-gray-500 ">
+            <div className="w-full bg-white z-10 border-t-2 p-3 fixed bottom-0 lg:hidden flex gap-4 items-center justify-between md:justify-evenly text-gray-500 ">
                 {
                     allTypes.map((item) => (
                         <Link to={`/${item.id}`}>
@@ -101,7 +101,7 @@ const PcFoodTabs = () => {
     ])
     return (
         <>
-            <div className="mt-8 hidden lg:flex container mx-auto px-20 gap-16">
+            <div className="my-8 hidden lg:flex container mx-auto px-20 gap-16">
                 {allTypes.map((item) => (
                     <Link to={`/${item.id}`}>
                         <div className={classnames(
