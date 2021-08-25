@@ -1,7 +1,8 @@
 import React from 'react'
-
+import Slider from "react-slick";
 // components
 import DeliveryCategory from './DeliveryCategory';
+import { NextArrow, PrevArrow } from '../Arrows.carousel';
 
 const DeliveryCarousel = () => {
     const categories = [
@@ -30,20 +31,37 @@ const DeliveryCarousel = () => {
             food: "Juices",
         }
     ];
+
+    const settings = {
+        arrows:true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        nextArrow:<NextArrow/>,
+        prevArrow:<PrevArrow/>
+    };
     return (
         <>
             <h1 className="  text-lg lg:text-3xl font-semibold my-4 text-gray-800">Inspriation for your first Order </h1>
             <div className=" lg:hidden flex flex-wrap  justify-between ">
                 {
                     categories.map((food) => (
-                        <DeliveryCategory {...food}/>
+                        <DeliveryCategory {...food} />
 
                     ))
                 }
             </div>
 
-            <div>
+            <div className="hidden lg:block">
+                <Slider {...settings}>
+                    {
+                        categories.map((food) => (
+                            <DeliveryCategory {...food} />
 
+                        ))
+                    }
+                </Slider>
             </div>
         </>
     )
